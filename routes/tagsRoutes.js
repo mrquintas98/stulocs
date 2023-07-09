@@ -1,6 +1,6 @@
 const express = require('express');
     const router = express.Router();
-    const Place = require("../models/tagsModels");
+    const Place = require("../models/tagsModel");
 
     router.get('/', async function(req,res,next){
         try {
