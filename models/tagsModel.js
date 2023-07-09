@@ -4,7 +4,7 @@ const pool = require("../config/database");
 		return new Tag(dbObj.id, dbObj.name);
 	}
 	
-	class Place {
+	class Tag {
 		constructor(id,name){
 			this.id=id;
 			this.name=name;
