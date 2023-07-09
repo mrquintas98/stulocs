@@ -5,15 +5,17 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 
 var app = express();
-app.use(cookieSession({
-    name: 'session',
-    secret: process.env.COOKIE_SECRET,
-    maxAge: 6 * 60 * 1000
-}))
+
+// app.use(cookieSession({
+//     name: 'session',
+//     secret: process.env.COOKIE_SECRET,
+//     maxAge: 6 * 60 * 1000
+// }))
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
