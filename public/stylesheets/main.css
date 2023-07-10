@@ -9,10 +9,10 @@ body {
   
   header{
     margin: 0%;
-    width: 25% ;
+    width: 1000% ;
     height: 90px;
     font: inherit;
-    position: fixed;
+    position: absolute;
     background-color: #093D34;
     justify-content: space-between;
     box-sizing: border-box;
