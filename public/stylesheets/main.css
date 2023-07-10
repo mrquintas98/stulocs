@@ -9,7 +9,7 @@ body {
   
   header{
     margin: 0%;
-    width: 100% ;
+    width: 25% ;
     height: 90px;
     font: inherit;
     position: fixed;
@@ -18,35 +18,6 @@ body {
     box-sizing: border-box;
     float: inline-end;
     z-index: 301;
-  }
-  
-  nav *{
-    display: inline;
-    float: inline-start;
-  }
-  
-  .nav-right{
-    margin: 20px;
-    float: right;
-  }
-  
-  li {
-    justify-content: space-between;
-    text-align:center;
-  }
-  
-  li a {
-    float: left;
-    display: block;
-    color: #ECF1FD;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  li a:hover {
-    background-color: #0a493e;
-    color: #ECF1FD;
   }
   
   footer{
@@ -68,10 +39,6 @@ body {
   p{
     margin: 50px;
   }
-  
-  lpi{
-    margin: 50px;
-    position: absolute;
-  }
+
   
   
