@@ -13,24 +13,17 @@ window.onload = async function(){
 }
 
 
-function populateTable(result){
-    var table = document.getElementById("placesTable");
-
-    // helper function        
-    function addCell(tr, text) {
-        var td = tr.insertCell();
-        td.textContent = text;
-        return td;
+Place.getAll('placesTable')
+  .then(response => {
+    if (response.status === 200) {
+      console.log(response.result);
+    } else {
+      console.error('Error adding data to the table:', response.result);
     }
-
-    // insert data
-    result.forEach(function (item) {
-        var row = table.insertRow();
-        addCell(row, 'Category: ' + item.category);
-        addCell(row, 'Best selling month: ' + item.topMonthStr);
-        addCell(row, 'Amount: ' + item.topAmount.toFixed(2));
-    });
-}
+  })
+  .catch(err => {
+    console.error('Error:', err);
+  });
 
 
 async function logout(){

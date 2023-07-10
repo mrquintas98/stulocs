@@ -23,9 +23,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ---------------- ROUTER
 const placesRouter = require("./routes/placesRoutes");
 const tagsRouter = require("./routes/tagsRoutes");
+const usersRouter = require("./routes/usersRoutes");
 
 app.use("/api/places",placesRouter);
 app.use("/api/tags", tagsRouter);
+app.use("/api/users", usersRouter);
 
 
 
