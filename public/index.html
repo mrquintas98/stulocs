@@ -1,9 +1,36 @@
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Stulocs</title>
+  <title>Homepage</title>
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <script src="./javascripts/utils/verifications.js"></script>
+  <script src="./javascripts/requests/usersRequests.js"></script>
+  <script src="./javascripts/login.js"></script>
 </head>
+
 <body>
-    <h1>Front page stulocs</h1>
+  <header>
+    <h1>Login</h1>
+  </header>
+  <main>
+    <p> Login to access all places and login study session data.
+    </p>
+    <form action="javascript:login()">
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" autocomplete="username" id="name"></td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td><input type="password" autocomplete="current-password" id="password"></td>
+        </tr>
+      </table>
+      <p id="msg" class="warning"></p>
+      <p><input type="submit" value="Login"></p>
+      <p><a href="register.html">Create a new user</a></p>
+    </form>
+  </main>
 </body>
+
 </html>

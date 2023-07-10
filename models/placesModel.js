@@ -26,7 +26,23 @@ const pool = require("../config/database");
 				console.log(err);
 				return {status: 500, result: err};
 			}
-		}		
+		}
+		
+		static async getPlacesByTag(tag){
+			try{
+				let result = [];
+				let dbres = await pool.query("Select places.name, places.address, places.coordx, places.coordy" +
+				"FROM (tags INNER JOIN places_tags ON places_tags.tagsid = tags.id)INNER JOIN places ON places_tags.placesid = places.id"+ 
+				"WHERE tags.name LIKE '%$1%'"+ 
+				"ORDER BY places.id ASC;", [tag]);
+				return { status:200, result:{msg:"Places with specific tag"}};
+			}catch(err){
+				console.log(err);
+				return{status:500,result:err};
+			}
+			
+		}
+
 	}
 	
 	module.exports = Place;
