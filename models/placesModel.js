@@ -11,41 +11,48 @@ class Place {
 
   static async getAll(placesTable) {
     try {
-      let dbres = await pool.query("SELECT * FROM places");
-      let dbPlaces = dbres.rows;
-      let table = document.getElementById(placesTable);
-
-      for (let dbPlace of dbPlaces) {
-        let row = document.createElement('tr');
-        let idCell = document.createElement('td');
-        let nameCell = document.createElement('td');
-        let addressCell = document.createElement('td');
-        let coordxCell = document.createElement('td');
-        let coordyCell = document.createElement('td');
-
-        idCell.textContent = dbPlace.id;
-        nameCell.textContent = dbPlace.name;
-        addressCell.textContent = dbPlace.address;
-        coordxCell.textContent = dbPlace.coordx;
-        coordyCell.textContent = dbPlace.coordy;
-
-        row.appendChild(idCell);
-        row.appendChild(nameCell);
-        row.appendChild(addressCell);
-        row.appendChild(coordxCell);
-        row.appendChild(coordyCell);
-
-        table.appendChild(row);
+      const response = await fetch('/api/places');
+      const result = await response.json();
+  
+      if (response.status === 200) {
+        const dbPlaces = result.result;
+        const table = document.getElementById(placesTable);
+  
+        for (const dbPlace of dbPlaces) {
+          const row = document.createElement('tr');
+          const idCell = document.createElement('td');
+          const nameCell = document.createElement('td');
+          const addressCell = document.createElement('td');
+          const coordxCell = document.createElement('td');
+          const coordyCell = document.createElement('td');
+  
+          idCell.textContent = dbPlace.id;
+          nameCell.textContent = dbPlace.name;
+          addressCell.textContent = dbPlace.address;
+          coordxCell.textContent = dbPlace.coordx;
+          coordyCell.textContent = dbPlace.coordy;
+  
+          row.appendChild(idCell);
+          row.appendChild(nameCell);
+          row.appendChild(addressCell);
+          row.appendChild(coordxCell);
+          row.appendChild(coordyCell);
+  
+          table.appendChild(row);
+        }
+  
+        return { status: 200, result: 'Data added to the table.' };
+      } else {
+        return { status: response.status, result: result.result };
       }
-
-      return { status: 200, result: 'Data added to the table.' };
     } catch (err) {
       console.log(err);
       return { status: 500, result: err };
     }
   }
+  
 
-  static async getPlacesByTag(tag) {
+  static async getAllByTag(tag) {
     try {
       let result = [];
       let dbres = await pool.query(`

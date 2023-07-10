@@ -1,19 +1,25 @@
+<!DOCTYPE html>
 <html>
-
 <head>
   <title>Places</title>
   <link rel="stylesheet" href="/stylesheets/main.css">
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/places.js"></script>
-</head>  
+</head>
 <body>
   <header>  
-    <h2 ><span id="user">Hello ______</span>
+    <h2><span id="user">Hello ______</span>
       <input type="button" value="Logout" onclick="logout()"> </h2>
-    <h1>Places</h1></header>
+    <h1>Places</h1>
+  </header>
   <main>
-    <h2>ss</h2>
+    <h2>Places by Tag</h2>
+    <div>
+      <label for="tag">Tag:</label>
+      <select id="tagDropdown"></select>
+      <button onclick="loadPlaces()">Load Places</button>
+    </div>
     <table id="placesTable">
       <tr>
         <th>Name</th>
@@ -23,6 +29,4 @@
       </tr>
     </table>
   </main>
-</body>
-
-</html>
+  <script>

@@ -13,4 +13,15 @@ const express = require('express');
         }
     });
 
+    router.get('/tag/:tag', async function(req, res, next) {
+        try {
+          const tag = req.params.tag;
+          const result = await Place.getAllByTag(tag);
+          res.status(result.status).json(result.result);
+        } catch (err) {
+          console.log(err);
+          res.status(500).json(err);
+        }
+      });
+
     module.exports = router;

@@ -1,21 +1,19 @@
+<!DOCTYPE html>
 <html>
-
 <head>
-  <title>Homepage</title>
+  <title>Login</title>
   <link rel="stylesheet" href="/stylesheets/main.css">
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/login.js"></script>
 </head>
-
 <body>
-  <header>
+  <header>  
     <h1>Login</h1>
   </header>
   <main>
-    <p> Login to access all places and login study session data.
-    </p>
-    <form action="javascript:login()">
+    <p>Login to access all places and login study session data.</p>
+    <form id="loginForm">
       <table>
         <tr>
           <td>Name:</td>
@@ -28,9 +26,8 @@
       </table>
       <p id="msg" class="warning"></p>
       <p><input type="submit" value="Login"></p>
-      <p><a href="register.html">Create a new user</a></p>
+      <p><button onclick="register()">Register</button></p>
     </form>
   </main>
 </body>
-
 </html>

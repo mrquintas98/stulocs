@@ -1,71 +1,70 @@
-async function requestRegister(user,pass){
+async function requestRegister(username, password) {
     try {
-        const response = await fetch(`/api/users`,{
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-                username: user,
-                password: pass
-            })
-        });
-        return {successful: response.status == 200};
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      return { successful: response.ok };
     } catch (err) {
-        console.log(err)
-        return{err:err};
+      console.log(err);
+      return { err: err.message || 'An error occurred' };
     }
-}
-
-async function requestLogin(user,pass){
-    try{
-        const response = await fetch (`/api/users/auth`,{
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-                username: user,
-                password: pass
-            })
-        });
-        return { successful: response.status == 200};
-    } catch (err) {
-        console.log(err)
-        return{err:err};
-    }
-}
-
-async function requestLogout(){
+  }
+  
+  async function requestLogin(username, password) {
     try {
-        const response = await fetch(`/api/users/auth`,
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "DELETE",
-        });
-        return {successful: response.status==200};
+      const response = await fetch('/api/users/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      return { successful: response.ok };
     } catch (err) {
-        console.log(err);
-        return{err:err};
+      console.log(err);
+      return { err: err.message || 'An error occurred' };
     }
-}
-
-async function requestProfile() {
+  }
+  
+  async function requestLogout() {
     try {
-        const response = await fetch(`/api/users/auth`);
-        var result = await response.json();
-        return { 
-            successful: response.status == 200,
-            unauthenticated: response.status == 401,
-            user: result
-        };
+      const response = await fetch('/api/users/auth', {
+        method: 'DELETE',
+      });
+  
+      return { successful: response.ok };
     } catch (err) {
-        console.log(err);
-        return {err: err};
+      console.log(err);
+      return { err: err.message || 'An error occurred' };
     }
-}
+  }
+  
+  async function requestProfile() {
+    try {
+      const response = await fetch('/api/users/auth');
+      const result = await response.json();
+  
+      return {
+        successful: response.ok,
+        unauthenticated: response.status === 401,
+        user: result,
+      };
+    } catch (err) {
+      console.log(err);
+      return { err: err.message || 'An error occurred' };
+    }
+  }
+  
+  export {
+    requestRegister,
+    requestLogin,
+    requestLogout,
+    requestProfile,
+  };
+  
